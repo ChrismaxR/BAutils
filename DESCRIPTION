@@ -11,3 +11,8 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/ChrismaxR/BAutils
 BugReports: https://github.com/ChrismaxR/BAutils/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    stringr
