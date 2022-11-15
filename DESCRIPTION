@@ -15,5 +15,9 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
-    stringr
+    dplyr,
+    skimr,
+    stringr,
+    tibble,
+    tidyr
 RoxygenNote: 7.2.1
