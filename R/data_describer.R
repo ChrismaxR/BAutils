@@ -16,7 +16,6 @@ data_describer <- function(data, example_number) {
   # order the column names, so to reflect column order in source files
   ordered_cols <- names(data) |>
     tibble::enframe() |>
-    dplyr::mutate(value = factor(value, ordered = T)) |>
     dplyr::pull(value)
 
   # make a pivoted set of non-null values, and add skimr::skim variables
@@ -29,10 +28,10 @@ data_describer <- function(data, example_number) {
     dplyr::summarise(
       value = stringr::str_c(value, collapse = "; ")
     ) |>
+    dplyr::full_join(skimr::skim(data), by = c("name" = "skim_variable")) |>
     dplyr::mutate(
       name = factor(name, levels = ordered_cols)
     ) |>
-    dplyr::full_join(skimr::skim(data), by = c("name" = "skim_variable")) |>
     dplyr::arrange(name) |>
     dplyr::rename(
       "column_name" = 1,
