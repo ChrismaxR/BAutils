@@ -14,11 +14,11 @@ gpt3_table_parser_davinci <- function(input, table_format, max_tokens) {
 
   response <- httr::POST(
     "https://api.openai.com/v1/completions",
-    add_headers(Authorization = paste0("Bearer ", openai_api_key)),
+    httr::add_headers(Authorization = paste0("Bearer ", openai_api_key)),
     encode = "json",
     body = list(
       model = "text-davinci-003",
-      prompt = str_c(
+      prompt = stringr::str_c(
         "A table summarizing this text:",
         input,
         table_format,
@@ -32,16 +32,16 @@ gpt3_table_parser_davinci <- function(input, table_format, max_tokens) {
     )
   )
 
-  if (status_code(response) == 200) {
+  if (httr::status_code(response) == 200) {
 
-    list_response <- content(response)
+    list_response <- httr::content(response)
 
     return(list_response$choices[[1]]$text)
 
 
   } else {
 
-    return(paste("Error:", status_code(response)))
+    return(paste("Error:", httr::status_code(response)))
 
   }
 
