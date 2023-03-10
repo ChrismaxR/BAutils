@@ -42,6 +42,7 @@ gg_theme_ba1 <- function(base_size = 12, legend_position = "right") {
       legend.justification = 1,
       panel.grid = element_line(colour = "#F3F4F5"),
       plot.caption = element_text(size = rel(0.8), margin = margin(8, 0, 0, 0)),
-      plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm")
+      plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm"),
+      strip.text = element_text(colour = mid_text, margin = margin(8, 0, 0, 0))
     )
 }
