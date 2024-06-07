@@ -4,7 +4,9 @@
 # ggplot plots
 
 #'@param base_size A number which controls the font size, 12 is default
-#'@param legend_position A string ("top", "bottom", "left", "right") to control the position of the legend
+#'@param legend_position String ("top", "bottom", "left", "right") to control the position of the legend
+#'@param background_fill String or hexadecimal to control the plots background fill colour, default is transparent (NA)
+#'@param background_colour String or hexadecimal to control the plots background frame colour, default is transparent (NA)
 #'
 #'@return A ggplot object
 #'
@@ -16,7 +18,12 @@
 #' labs(title = "Yikes", subtitle = "That's ugly") +
 #' gg_theme_ba1(base_size = 12, legend_position = "right")
 
-gg_theme_ba1 <- function(base_size = 12, legend_position = "right") {
+gg_theme_ba1 <- function(
+    base_size = 12,
+    legend_position = "right",
+    background_fill = NA,
+    background_colour = NA
+) {
 
   dark_text = "#1A242F"
   mid_text <-  monochromeR::generate_palette(dark_text, "go_lighter", n_colours = 5)[2]
@@ -43,6 +50,7 @@ gg_theme_ba1 <- function(base_size = 12, legend_position = "right") {
       panel.grid = element_line(colour = "#F3F4F5"),
       plot.caption = element_text(size = rel(0.8), margin = margin(8, 0, 0, 0)),
       plot.margin = margin(0.25, 0.25, 0.25, 0.25,"cm"),
+      plot.background = element_rect(fill = background_fill, colour = background_colour),
       strip.text = element_text(colour = mid_text, margin = margin(8, 0, 0, 0))
     )
 }
